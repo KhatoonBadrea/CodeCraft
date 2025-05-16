@@ -14,6 +14,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        ///kkkk
 
         // dd($product);
 
@@ -43,7 +44,7 @@ class ProductController extends Controller
         $validatData['available'] = $available;
 
         Product::create($validatData);
-        
+
         return redirect()->route('products.index');
     }
 
