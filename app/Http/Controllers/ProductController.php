@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = Category::all();
+        // dd($categories);
+
+        return view('products.create', compact('categories'));
     }
 
     /**
@@ -34,16 +38,20 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $validatData = $request->validated();
+        $product = new Product();
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->quantity = $request->quantity;
 
-        $available = false;
-
-        if ($validatData['quantity'] > 0) {
-            $available = true;
+        $available = True;
+        if ($request->quantity == 0) {
+            $available = false;
         }
-        $validatData['available'] = $available;
+        $product->available = $available;
+        $product->save();
 
-        Product::create($validatData);
 
         return redirect()->route('products.index');
     }

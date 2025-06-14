@@ -28,6 +28,7 @@ class StoreProductRequest extends FormRequest
             'price' => 'required|integer',
             'quantity' => 'required|integer',
             // 'available' => 'required|boolean'
+            'category_id'=>['required','integer','exists:categories,id'],
 
         ];
     }

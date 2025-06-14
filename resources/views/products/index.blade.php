@@ -2,6 +2,8 @@
 <table border='1'>
     <thead>
         <tr>
+
+            <th>category</th>
             <th>title</th>
             <th>description</th>
             <th>price</th>
@@ -12,6 +14,7 @@
     <tbody>
         @foreach ($products as $product)
         <tr>
+            <td>{{$product->category->name}}</td>
             <td>{{$product->title}}</td>
             <td>{{$product->description}}</td>
             <td>{{$product->price}}</td>

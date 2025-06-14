@@ -14,10 +14,12 @@
     <label>Quantity</label>
     <input type="number" name="quantity"> <br><br>
 
-    {{-- <select name='available'>
-        <option value="1">true</option>
-        <option value="0">false</option>
-    </select> --}}
+  <select name="category_id" >
+    @foreach ($categories as $category)
+    <option value="{{$category->id}}">{{$category->name}}</option>
+        
+    @endforeach
+  </select>
 
 
     <button type="submit"  name='submit'> send </button>
